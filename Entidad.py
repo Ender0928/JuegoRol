@@ -1,4 +1,5 @@
 import Stats, Sala, Objeto, random
+from Objeto import *
 
 class Personaje:
     def __init__(self, vida: int, nombre: str, sala: Sala):
@@ -7,7 +8,7 @@ class Personaje:
         self.nivel = 0
         self.nombre = nombre
         self.sala = sala
-        self.danioBase = 1
+        self.danioBase = 2
         self.stats = Stats.Stats()
         self.velocidad_base = 1
         
@@ -21,7 +22,7 @@ class Personaje:
         return self.vidaActual
     
     def atacar(self, objetivo):
-        objetivo.recibirDanio(self.danioBase)
+        objetivo.recibirDanio(random.randint(self.danioBase-2, self.danioBase+2))
     
     def recibirDanio(self,ataque: int):
         self.vidaActual -= ataque
@@ -37,25 +38,17 @@ class Personaje:
 class Humano(Personaje):
     
     mochila: Objeto
+    arma: Arma
     
-    def __init__(self, vida: int, nombre: str, arma: Objeto, sala: Sala):
+    def __init__(self, vida: int, nombre: str, sala: Sala):
         super().__init__(vida, nombre, sala)
         self.velocidad_base = 1
-        self.danioBase = 2
-        self.arma = arma
+        self.danioBase = 4
         self.mejora = False
         
-    def atacar(self, objetivo: Personaje):
-        if self.arma:
-            objetivo.recibirDanio(random.randint(self.arma.getAtaque()-2, self.arma.getAtaque()+2))
-        else:
-            objetivo.recibirDanio(self.danioBase)
-    
-    def recibirDanio(self,ataque: int):
-        self.vidaActual -= ataque
-        if self.vidaActual <= 0:
-            self.vidaActual = 0
-        
+    def equiparArma(self, arma: Arma):
+        self.arma = arma
+        self.danio += arma.getAtaque           
             
     def consultar_mochila(self):
         if self.mochila :
@@ -121,13 +114,14 @@ class Mago(Humano):
 class Goblin(Personaje):
     
     numGoblin: int = 0
-    ataque: int = 5
-    defensa: int = 5
+    ataque: int = 3
+    defensa: int = 3
     def __init__(self, vida: int, nombre: str, sala: Sala):
         super().__init__(vida, nombre, sala)
         Goblin.numGoblin += 1
         self.ataque = random.randint(Goblin.ataque-2, Goblin.ataque+2)
         self.defensa = random.randint(Goblin.defensa-2, Goblin.defensa+2)  
+        
 class Moblin(Personaje):
     numMoblin: int = 0
     ataque: int = 10

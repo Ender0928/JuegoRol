@@ -46,6 +46,7 @@ class Juego:
         while jugador.vidaActual > 0 and sala.enemigos:
             print('Inicio de la ronda de combate ' + str(rondaCombate))
             print('Enemigos restantes:\n' + sala.__str__())
+            print('Tu personaje:\n' + jugador.__str__())
             print('Seleccione la acción que desea realizar:')
             print(' Atacar')
             print(' Objeto')
@@ -92,7 +93,7 @@ def main():
     time.sleep(2)
     nombre = input('Introduce el nombre de tu personaje: ')
     sala1 = Sala()
-    jugador = Humano(10, nombre, None, sala1)
+    jugador = Humano(10, nombre, sala1)
     enemigo1 = Goblin(5, 'prueba', sala1)
     enemigo2 = Goblin(5, 'prueba2', sala1)
     sala1.agregar_enemigo(enemigo1, enemigo2)
