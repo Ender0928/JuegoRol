@@ -86,6 +86,7 @@ class Juego:
     
 def main():
     juego = Juego()
+    print('Hola')
     print('Bienvenido a la mazmorra')
     #Hacer espera de 2 segundos
     time.sleep(2)
