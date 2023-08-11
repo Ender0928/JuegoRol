@@ -37,13 +37,13 @@ class Personaje:
 
 class Humano(Personaje):
     
-    mochila: Objeto
     arma: Arma
     
     def __init__(self, vida: int, nombre: str, sala: Sala):
         super().__init__(vida, nombre, sala)
+        self.mochila = Mochila()
         self.velocidad_base = 1
-        self.danioBase = 4
+        self.danioBase = 8
         self.mejora = False
         
     def equiparArma(self, arma: Arma):
@@ -56,6 +56,9 @@ class Humano(Personaje):
         else:
             print('No tiene una mochila equipada ahora mismo')
             
+    def getMochila(self):
+        return self.mochila
+    
     def equiparMochila(self, mochila: Objeto):
         self.mochila = mochila
         

@@ -6,16 +6,20 @@ class Objeto:
         self.nombre = nombre
         self.descripcion = descripcion
         
+    def getNombre(self):
+        return self.nombre
+        
 class Mochila(Objeto):
     
-    def __init__(self, nombre: str):
-        super().__init__(nombre, 'Sirve para guardar los objetos que encuentres en la aventura')
+    def __init__(self):
+        super().__init__('Mochila', 'Sirve para guardar los objetos que encuentres en la aventura')
         self.capacidad = 10
         self.contenido = []
         
     def agregarObjeto(self, objeto: Objeto):
         
         if len(self.contenido) < self.capacidad:
+            print('Has obtenido como recompensa: ' + objeto.getNombre() + '\n')
             self.contenido.append(objeto)
 
         else:
@@ -43,12 +47,12 @@ class Mochila(Objeto):
         
 class Arma(Objeto):
     
-    def __init__(self, nombre: str, descripcion: str, ataque: int, requerimiento: Stats, velocidad: int, tipoArma: TipoArma):
-        super().__init__(nombre, descripcion)
+    def __init__(self, ataque: int):
+        super().__init__('Arma', 'Objeto para atacar')
         self.ataque = ataque
-        self.requerimiento = requerimiento
-        self.velocidad = velocidad
-        self.tipoArma = tipoArma
+        #self.requerimiento = requerimiento
+        #self.velocidad = velocidad
+        #self.tipoArma = tipoArma
         
     def __str__(self):
         return self.nombre + " (Ataque: " + str(self.ataque) + " - Velocidad: " + str(self.velocidad) + ")"
@@ -64,3 +68,12 @@ class Arma(Objeto):
     
     def getDescripcion(self):
         return self.descripcion
+    
+class PocionVida(Objeto):
+    def __init__(self):
+        super().__init__('Pocion Vida', 'Recupera 10 puntos de vida')
+        
+class Espada(Arma):
+    def __init__(self):
+        super().__init__('Espada', 'Arma de filo', 5, Stats.Stats(0, 0, 0, 0, 0, 0, 0), 0, TipoArma.TipoArma.ESPADA)
+    

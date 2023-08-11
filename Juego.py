@@ -46,7 +46,7 @@ class Juego:
         while jugador.vidaActual > 0 and sala.enemigos:
             print('Inicio de la ronda de combate ' + str(rondaCombate))
             print('Enemigos restantes:\n' + sala.__str__())
-            print('Tu personaje:\n' + jugador.__str__())
+            print('Tu personaje:\n' + jugador.__str__() + '\n')
             print('Seleccione la acción que desea realizar:')
             print(' Atacar')
             print(' Objeto')
@@ -81,28 +81,31 @@ class Juego:
         if(jugador.vidaActual <= 0):
             print('Has muerto')
             exit()
-            
+   
+    def obtenerRecompensa(self, jugador: Humano, sala: Sala):
+        jugador.getMochila().agregarObjeto(sala.recompensa)       
     
     
 def main():
     juego = Juego()
-    print('Hola')
     print('Bienvenido a la mazmorra')
     #Hacer espera de 2 segundos
     time.sleep(2)
     print('Encarnarás a un aventurero que deberá superar las pruebas de la mazmorra')
     time.sleep(2)
     nombre = input('Introduce el nombre de tu personaje: ')
-    sala1 = Sala()
-    jugador = Humano(10, nombre, sala1)
-    enemigo1 = Goblin(5, 'prueba', sala1)
-    enemigo2 = Goblin(5, 'prueba2', sala1)
-    sala1.agregar_enemigo(enemigo1, enemigo2)
+    sala = Sala()
+    jugador = Humano(10, nombre, sala)
+    enemigo1 = Goblin(5, 'prueba', sala)
+    enemigo2 = Goblin(5, 'prueba2', sala)
+    sala.agregar_enemigo(enemigo1, enemigo2)
     time.sleep(2)
-    print('Han aparecido ' + str(sala1.enemigos.__len__()) + ' enemigos')
+    print('Han aparecido ' + str(sala.enemigos.__len__()) + ' enemigos')
     time.sleep(2)
     print('Inicio del combate')
-    juego.action(jugador, sala1)
+    juego.action(jugador, sala)
     print('Has superado la primera sala')
+    juego.obtenerRecompensa(jugador, sala)
+    
 if __name__ == '__main__':
     main()

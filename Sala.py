@@ -1,8 +1,9 @@
-import Entidad, random
+import Entidad, random, Objeto
+from Objeto import *
 
 class Sala:
         numero = 0
-        lista_objetos_recompensas = ['Espada', 'Pocion Vida', 'Mochila', 'Armadura', 'Lanza', 'Hacha', 'Pocion PE']
+        lista_objetos_recompensas = [Espada(10), Espada(12)] #'Pocion Vida', 'Mochila', 'Armadura', 'Lanza', 'Hacha', 'Pocion PE']
         
         def __init__(self):
             self.numero = Sala.numero 
