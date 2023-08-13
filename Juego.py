@@ -89,7 +89,6 @@ class Juego:
 def main():
     juego = Juego()
     print('Bienvenido a la mazmorra')
-    #Hacer espera de 2 segundos
     time.sleep(2)
     print('Encarnarás a un aventurero que deberá superar las pruebas de la mazmorra')
     time.sleep(2)
@@ -106,6 +105,6 @@ def main():
     juego.action(jugador, sala)
     print('Has superado la primera sala')
     juego.obtenerRecompensa(jugador, sala)
-    
+    print(jugador.mochila.__str__())
 if __name__ == '__main__':
     main()

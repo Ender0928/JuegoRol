@@ -44,7 +44,12 @@ class Mochila(Objeto):
     def eliminarObjeto(self, objeto: Objeto):
         self.contenido.remove(objeto)
         
-        
+    def __str__(self):
+        acum = ''
+        for i in self.contenido:
+            acum += i.__str__() + '\n'
+        return acum
+      
 class Arma(Objeto):
     
     def __init__(self, ataque: int):
@@ -55,7 +60,7 @@ class Arma(Objeto):
         #self.tipoArma = tipoArma
         
     def __str__(self):
-        return self.nombre + " (Ataque: " + str(self.ataque) + " - Velocidad: " + str(self.velocidad) + ")"
+        return self.nombre + " (Ataque: " + str(self.ataque) #+ " - Velocidad: " + str(self.velocidad) + ")"
     
     def getAtaque(self):
         return self.ataque + self.tipoArma.getAtaque()
@@ -74,6 +79,6 @@ class PocionVida(Objeto):
         super().__init__('Pocion Vida', 'Recupera 10 puntos de vida')
         
 class Espada(Arma):
-    def __init__(self):
-        super().__init__('Espada', 'Arma de filo', 5, Stats.Stats(0, 0, 0, 0, 0, 0, 0), 0, TipoArma.TipoArma.ESPADA)
+    def __init__(self, attack: int):
+        super().__init__(attack)#'Espada', 'Arma de filo', 5, Stats.Stats(0, 0, 0, 0, 0, 0, 0), 0, TipoArma.TipoArma.ESPADA)
     
