@@ -119,8 +119,8 @@ class Goblin(Personaje):
     numGoblin: int = 0
     ataque: int = 3
     defensa: int = 3
-    def __init__(self, vida: int, nombre: str, sala: Sala):
-        super().__init__(vida, nombre, sala)
+    def __init__(self, vida: int, sala: Sala):
+        super().__init__(vida, 'goblin' + str(Goblin.numGoblin), sala)
         Goblin.numGoblin += 1
         self.ataque = random.randint(Goblin.ataque-2, Goblin.ataque+2)
         self.defensa = random.randint(Goblin.defensa-2, Goblin.defensa+2)  
@@ -129,8 +129,8 @@ class Moblin(Personaje):
     numMoblin: int = 0
     ataque: int = 10
     defensa: int = 10
-    def __init__(self, vida: int, nombre: str, sala: Sala):
-        super.__init__(vida, 'Moblin'+Moblin.numMoblin, sala)
+    def __init__(self, vida: int, sala: Sala):
+        super.__init__(vida, 'Moblin'+ str(Moblin.numMoblin), sala)
         Moblin.numMoblin += 1
         self.ataque = random.randint(Moblin.ataque-3, Moblin.ataque+3)
         self.defensa = random.randint(Moblin.defensa-3, Moblin.defensa+3)
@@ -139,8 +139,8 @@ class Ogro(Personaje):
     numOgro: int = 0
     ataque: int = 15
     defensa: int = 15
-    def __init__(self, vida: int, nombre: str, sala: Sala):
-        super.__init__(vida, 'Ogro'+Ogro.numOgro, sala)
+    def __init__(self, vida: int, sala: Sala):
+        super.__init__(vida, 'Ogro'+ str(Ogro.numOgro), sala)
         Ogro.numOgro += 1
         self.ataque = random.randint(Ogro.ataque-3, Ogro.ataque+4)
         self.defensa = random.randint(Ogro.defensa-3, Ogro.defensa+4)

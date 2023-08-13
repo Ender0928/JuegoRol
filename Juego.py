@@ -4,28 +4,6 @@ from Sala import *
 
 class Juego:
 
-
-    def generarEnemigos(self, nombre: str, num: int, sala: Sala):
-        
-        if nombre == 'Goblin':
-            for i in range(num):
-                self.generarGoblin(sala)
-            
-        
-        elif nombre == 'Moblin':
-            for i in range(num):
-                self.generarMoblin(sala)
-                
-        elif nombre == 'Ogro':
-            for i in range(num):
-                self.generarOgro(sala)
-                
-    def generarGoblin(self, sala):
-        goblin = Goblin(5, 'prueba', Sala())
-    def generarMoblin(self, sala):
-        pass
-    def generarOgro(sala):
-        pass
     
     def atacar(self, jugador: Entidad, target: str, sala: Sala):
         for enemigo in sala.enemigos:
@@ -95,9 +73,9 @@ def main():
     nombre = input('Introduce el nombre de tu personaje: ')
     sala = Sala()
     jugador = Humano(10, nombre, sala)
-    enemigo1 = Goblin(5, 'prueba', sala)
-    enemigo2 = Goblin(5, 'prueba2', sala)
-    sala.agregar_enemigo(enemigo1, enemigo2)
+    #aqui se crearía el bucle
+
+    sala.generarEnemigos('Goblin', 2)  
     time.sleep(2)
     print('Han aparecido ' + str(sala.enemigos.__len__()) + ' enemigos')
     time.sleep(2)
@@ -105,6 +83,6 @@ def main():
     juego.action(jugador, sala)
     print('Has superado la primera sala')
     juego.obtenerRecompensa(jugador, sala)
-    print(jugador.mochila.__str__())
+    
 if __name__ == '__main__':
     main()
