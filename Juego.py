@@ -84,5 +84,7 @@ def main():
     print('Has superado la primera sala')
     juego.obtenerRecompensa(jugador, sala)
     
+    #sala = Sala()
+    
 if __name__ == '__main__':
     main()
