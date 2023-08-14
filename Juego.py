@@ -15,6 +15,7 @@ class Juego:
                     if target == enemigo.getNombre():
                         jugador.atacar(enemigo)
                         if enemigo.getVida() <= 0:
+                            jugador.ganarExp(enemigo.getExp())
                             sala.enemigos.remove(enemigo)
                     enemigo.atacar(jugador)
                     

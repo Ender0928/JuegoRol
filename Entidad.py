@@ -11,6 +11,7 @@ class Personaje:
         self.danioBase = 2
         self.stats = Stats.Stats()
         self.velocidad_base = 1
+        self.exp = 0
         
     def getVelocidad(self):
         return self.velocidad_base
@@ -28,7 +29,10 @@ class Personaje:
         self.vidaActual -= ataque
         if self.vidaActual <= 0:
             self.vidaActual = 0
-                   
+     
+    def getExp(self):
+        return self.exp
+                  
     def __str__(self):
         return self.nombre + " (" + str(self.vidaActual) + "/" + str(self.vidaMax) + ")"  + " nivel" + str(self.nivel)
     
@@ -46,6 +50,8 @@ class Humano(Personaje):
         self.danioBase = 8
         self.PE = 0
         self.PEMax = 0
+        self.exp = 0
+        self.subirNivel = 100
         self.mejora = False
         
     def equiparArma(self, arma: Arma):
@@ -78,7 +84,21 @@ class Humano(Personaje):
         else:
             print('No puede recuperar PE porque no tiene habilidad especial')
             return False
-        
+    
+    def ganarExp(self, exp: int):
+        self.exp += exp
+        if self.exp >= self.subirNivel:
+            self.subirNivel *= 1.75
+            self.nivel += 1
+            self.vidaMax *= 1.5
+            self.vidaActual = self.vidaMax
+            self.PEMax += 5
+            self.PE = self.PEMax
+            #self.stats.agregarPuntos()
+            print('Has subido de nivel')
+            #self.mejora = True
+            #self.mejorar()   
+             
     def elegir_clase(self):
         print('¿Que clase desea elegir?\n 1:Asesino \n 2:Guerrero \n 3:Mago')
         clase = input()
@@ -139,28 +159,35 @@ class Goblin(Personaje):
     numGoblin: int = 0
     ataque: int = 3
     defensa: int = 3
+    
     def __init__(self, vida: int, sala: Sala):
         super().__init__(vida, 'goblin' + str(Goblin.numGoblin), sala)
         Goblin.numGoblin += 1
         self.ataque = random.randint(Goblin.ataque-2, Goblin.ataque+2)
         self.defensa = random.randint(Goblin.defensa-2, Goblin.defensa+2)  
+        self.exp = 20
         
 class Moblin(Personaje):
+    
     numMoblin: int = 0
     ataque: int = 10
     defensa: int = 10
+    
     def __init__(self, vida: int, sala: Sala):
         super.__init__(vida, 'Moblin'+ str(Moblin.numMoblin), sala)
         Moblin.numMoblin += 1
         self.ataque = random.randint(Moblin.ataque-3, Moblin.ataque+3)
         self.defensa = random.randint(Moblin.defensa-3, Moblin.defensa+3)
-        
+        self.exp = 50
 class Ogro(Personaje):
+    
     numOgro: int = 0
     ataque: int = 15
     defensa: int = 15
+    
     def __init__(self, vida: int, sala: Sala):
         super.__init__(vida, 'Ogro'+ str(Ogro.numOgro), sala)
         Ogro.numOgro += 1
         self.ataque = random.randint(Ogro.ataque-3, Ogro.ataque+4)
         self.defensa = random.randint(Ogro.defensa-3, Ogro.defensa+4)
+        self.exp = 100
