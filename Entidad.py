@@ -52,6 +52,7 @@ class Humano(Personaje):
         self.PEMax = 0
         self.exp = 0
         self.subirNivel = 100
+        self.nivel = 0
         self.mejora = False
         
     def equiparArma(self, arma: Arma):
@@ -98,6 +99,9 @@ class Humano(Personaje):
             print('Has subido de nivel')
             #self.mejora = True
             #self.mejorar()   
+    
+    def getNivel(self):
+        return self.nivel
              
     def elegir_clase(self):
         print('¿Que clase desea elegir?\n 1:Asesino \n 2:Guerrero \n 3:Mago')

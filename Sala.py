@@ -3,11 +3,11 @@ from Objeto import *
 from Entidad import *
 
 class Sala:
-        numero = 0
+        numero: int = 1
         lista_objetos_recompensas = [Espada(random.randint(5-2, 5+2),random.randint(5-2, 5+2)), PocionVida(), PocionPE()] # 'Armadura', 'Lanza', 'Hacha']
         
         def __init__(self):
-            self.numero = Sala.numero 
+            self.numero = Sala.numero
             Sala.numero += 1
             self.enemigos = []
             self.recompensa = random.choice(Sala.lista_objetos_recompensas)
@@ -22,6 +22,8 @@ class Sala:
         def get_enemigos(self):
             return self.enemigos
         
+        def getNumero(self):
+            return self.numero
 
         def generarEnemigos(self, nombre: str, num: int):
         

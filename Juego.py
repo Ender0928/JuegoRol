@@ -75,17 +75,25 @@ def main():
     sala = Sala()
     jugador = Humano(10, nombre, sala)
     #aqui se crearía el bucle
-
-    sala.generarEnemigos('Goblin', 2)  
-    time.sleep(2)
-    print('Han aparecido ' + str(sala.enemigos.__len__()) + ' enemigos')
-    time.sleep(2)
-    print('Inicio del combate')
-    juego.action(jugador, sala)
-    print('Has superado la primera sala')
-    juego.obtenerRecompensa(jugador, sala)
+    #elegir si quieres realizar una accion antes o continuar(equipar objeto)
+    while jugador.getNivel() < 10 and jugador.vidaActual > 0:
+        sala.generarEnemigos('Goblin', random.randint(1, 4)) 
+        if(jugador.getNivel >= 3):
+            sala.generarEnemigos('Moblin', random.randint(1, 3))
+        if(jugador.getNivel >= 6):
+            sala.generarEnemigos('Ogro', random.randint(1, 2))
+        time.sleep(2)
+        print('Han aparecido ' + str(sala.enemigos.__len__()) + ' enemigos')
+        time.sleep(2)
+        print('Inicio del combate')
+        juego.action(jugador, sala)
+        print('Has superado la sala ' + str(sala.getNumero()))
+        juego.obtenerRecompensa(jugador, sala)
     
-    #sala = Sala()
+        if(jugador.getNivel >= 5 and jugador.mejora == False):
+            jugador.mejorar()
+        
+        #sala = Sala()
     
 if __name__ == '__main__':
     main()
