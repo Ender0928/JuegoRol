@@ -44,6 +44,8 @@ class Humano(Personaje):
         self.mochila = Mochila()
         self.velocidad_base = 1
         self.danioBase = 8
+        self.PE = 0
+        self.PEMax = 0
         self.mejora = False
         
     def equiparArma(self, arma: Arma):
@@ -61,6 +63,21 @@ class Humano(Personaje):
     
     def equiparMochila(self, mochila: Objeto):
         self.mochila = mochila
+        
+    def recuperarVida(self, vida: int):
+        self.vidaActual += vida
+        if self.vidaActual > self.vidaMax:
+            self.vidaActual = self.vidaMax
+            
+    def recuperarPE(self, PE: int):
+        if(self.mejora == True):
+            self.PE += PE
+            if self.PE > self.PEMax:
+                self.PE = self.PEMax
+            return True
+        else:
+            print('No puede recuperar PE porque no tiene habilidad especial')
+            return False
         
     def elegir_clase(self):
         print('¿Que clase desea elegir?\n 1:Asesino \n 2:Guerrero \n 3:Mago')
@@ -80,6 +97,7 @@ class Asesino(Humano):
     def __init__(self, vida, nombre):
         super().__init__(vida, nombre)
         self.velocidad_base = 1
+        self.PEMax = 50
         self.PE = 50
         super.mejora = True
         
@@ -94,6 +112,7 @@ class Guerrero(Humano):
         super().__init__(vida, nombre)
         self.velocidad_base = 1
         self.PE = 75
+        self.PEMax = 75
         super.mejora = True
         
     def hab_esp(self):
@@ -107,6 +126,7 @@ class Mago(Humano):
         super().__init__(vida, nombre)
         self.velocidad_base = 1
         self.PE = 100
+        self.PEMax = 100
         super.mejora = True
         
     def hab_esp(self):
