@@ -17,6 +17,7 @@ class Sala:
             self.enemigos.sort(key=lambda x: x.getVelocidad(), reverse=True)
             
         def eliminar_enemigo(self, personaje: Entidad):
+            personaje.morir()
             self.enemigos.remove(personaje)
             
         def get_enemigos(self):

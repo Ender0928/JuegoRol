@@ -16,7 +16,7 @@ class Juego:
                         jugador.atacar(enemigo)
                         if enemigo.getVida() <= 0:
                             jugador.ganarExp(enemigo.getExp())
-                            sala.enemigos.remove(enemigo)
+                            sala.eliminar_enemigo(enemigo)
                     enemigo.atacar(jugador)
                     
                   
@@ -46,9 +46,15 @@ class Juego:
             elif accion == 'Objeto':
                 if jugador.mochila:
                     print('Seleccione el objeto que desea utilizar:\n')
-                    jugador.mochila.__str__()
+                    jugador.consultar_mochila()
                     objeto = input()
-                    objeto.usar(jugador)
+                    for i in jugador.mochila.contenido:
+                        if objeto == i.getNombre():
+                            i.usar(jugador)
+                            jugador.mochila.eliminarObjeto(i)
+                            break
+                        else :
+                            print('No tienes ese objeto en tu mochila')
                 else:
                     print('No tiene una mochila equipada ahora mismo')
                 
@@ -74,13 +80,15 @@ def main():
     nombre = input('Introduce el nombre de tu personaje: ')
     sala = Sala()
     jugador = Humano(10, nombre, sala)
-    #aqui se crearía el bucle
-    #elegir si quieres realizar una accion antes o continuar(equipar objeto)
+    
     while jugador.getNivel() < 10 and jugador.vidaActual > 0:
+        #elegir si quieres realizar una accion antes o continuar(equipar objeto)
+        #print('Antes de continuar a la siguiente sala, ¿desea realizar alguna acción?')
+        #print(' 1:Equipar objeto \n 2:Continuar')
         sala.generarEnemigos('Goblin', random.randint(1, 4)) 
-        if(jugador.getNivel >= 3):
+        if(jugador.getNivel() >= 3):
             sala.generarEnemigos('Moblin', random.randint(1, 3))
-        if(jugador.getNivel >= 6):
+        if(jugador.getNivel() >= 6):
             sala.generarEnemigos('Ogro', random.randint(1, 2))
         time.sleep(2)
         print('Han aparecido ' + str(sala.enemigos.__len__()) + ' enemigos')
@@ -90,10 +98,10 @@ def main():
         print('Has superado la sala ' + str(sala.getNumero()))
         juego.obtenerRecompensa(jugador, sala)
     
-        if(jugador.getNivel >= 5 and jugador.mejora == False):
+        if(jugador.getNivel() >= 5 and jugador.mejora == False):
             jugador.mejorar()
         
-        #sala = Sala()
+        sala = Sala()
     
 if __name__ == '__main__':
     main()

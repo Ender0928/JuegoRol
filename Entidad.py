@@ -46,6 +46,7 @@ class Humano(Personaje):
     def __init__(self, vida: int, nombre: str, sala: Sala):
         super().__init__(vida, nombre, sala)
         self.mochila = Mochila()
+        self.mochila.agregarObjeto(PocionVida())
         self.velocidad_base = 1
         self.danioBase = 8
         self.PE = 0
@@ -61,6 +62,7 @@ class Humano(Personaje):
             
     def consultar_mochila(self):
         if self.mochila :
+            print('Mochila: ')
             self.mochila.__str__()
         else:
             print('No tiene una mochila equipada ahora mismo')
@@ -170,7 +172,11 @@ class Goblin(Personaje):
         self.ataque = random.randint(Goblin.ataque-2, Goblin.ataque+2)
         self.defensa = random.randint(Goblin.defensa-2, Goblin.defensa+2)  
         self.exp = 20
-        
+    
+    def morir(self):
+        Goblin.numGoblin -= 1
+        print('El goblin ha muerto')
+            
 class Moblin(Personaje):
     
     numMoblin: int = 0
@@ -183,6 +189,11 @@ class Moblin(Personaje):
         self.ataque = random.randint(Moblin.ataque-3, Moblin.ataque+3)
         self.defensa = random.randint(Moblin.defensa-3, Moblin.defensa+3)
         self.exp = 50
+        
+    def morir(self):
+        Moblin.numMoblin -= 1
+        print('El moblin ha muerto')
+        
 class Ogro(Personaje):
     
     numOgro: int = 0
@@ -195,3 +206,7 @@ class Ogro(Personaje):
         self.ataque = random.randint(Ogro.ataque-3, Ogro.ataque+4)
         self.defensa = random.randint(Ogro.defensa-3, Ogro.defensa+4)
         self.exp = 100
+        
+    def morir(self):
+        Ogro.numOgro -= 1
+        print('El ogro ha muerto')

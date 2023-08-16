@@ -8,6 +8,9 @@ class Objeto:
         
     def getNombre(self):
         return self.nombre
+    
+    def __str__(self):
+        return self.nombre
         
 class Mochila(Objeto):
     
@@ -48,7 +51,7 @@ class Mochila(Objeto):
         acum = ''
         for i in self.contenido:
             acum += i.__str__() + '\n'
-        return acum
+        print(acum)
       
 class Arma(Objeto):
     
@@ -99,3 +102,4 @@ class Hacha(Arma):
 class Lanza(Arma):
     def __init__(self, attack: int, velocidad: int):
         super().__init__(attack, velocidad)
+        
