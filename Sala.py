@@ -9,8 +9,7 @@ class Sala:
             self.numero = Sala.numero
             Sala.numero += 1
             self.enemigos = []
-            #self.recompensa = random.choice([Espada(random.randint(5-2, 5+2),random.randint(5-2, 5+2)), PocionVida()])#, PocionPE()]) # 'Armadura', 'Lanza', 'Hacha'])
-            self.recompensa = Espada(10, 10)
+            self.recompensa = random.choice([Espada(random.randint(5-2, 5+2),random.randint(5-2, 5+2)), PocionVida()])#, PocionPE()]) # 'Armadura', 'Lanza', 'Hacha'])
             
         def agregar_enemigo(self, *personaje : Entidad):
             self.enemigos.extend(personaje)

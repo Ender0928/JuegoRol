@@ -1,4 +1,4 @@
-import TipoArma, Stats
+import Stats
 
 class Objeto:
     
@@ -54,22 +54,21 @@ class Mochila(Objeto):
         print(acum)
       
 class Arma(Objeto):
-    
+
     def __init__(self, ataque: int, velocidad: int):
         super().__init__('Arma', 'Objeto para atacar')
         self.ataque = ataque
         #self.requerimiento = requerimiento
         self.velocidad = velocidad
-        #self.tipoArma = tipoArma
         
     def __str__(self):
-        return self.nombre + " (Ataque: " + str(self.ataque) #+ " - Velocidad: " + str(self.velocidad) + ")"
+        return self.nombre + " (Ataque: " + str(self.ataque) + " - Velocidad: " + str(self.velocidad) + ")"
     
     def getAtaque(self):
-        return self.ataque #+ self.tipoArma.getAtaque()
+        return self.ataque
     
     def getVelocidad(self):
-        return self.velocidad #+ self.tipoArma.getVelocidad()
+        return self.velocidad 
     
     def getRequerimiento(self):
         return self.requerimiento
@@ -95,14 +94,22 @@ class PocionPE(Objeto):
         jugador.recuperarPE(30)
 
 class Espada(Arma):
-    def __init__(self, attack: int, velocidad: int):
-        super().__init__(attack, velocidad)#'Espada', 'Arma de filo', 5, Stats.Stats(0, 0, 0, 0, 0, 0, 0), 0, TipoArma.TipoArma.ESPADA)
+  
     
+    def __init__(self, attack: int, velocidad: int):
+        super().__init__(attack, velocidad)#'Espada', 'Arma de filo', 5, Stats.Stats(0, 0, 0, 0, 0, 0, 0), 0)   
+        self.nombre = 'Espada'
+        self.descripcion = 'Arma de filo'
+        
 class Hacha(Arma):
     def __init__(self, attack: int, velocidad: int):
         super().__init__(attack, velocidad)
+        self.nombre = 'Hacha'
+        self.descripcion = 'Arma contundente'
         
 class Lanza(Arma):
     def __init__(self, attack: int, velocidad: int):
         super().__init__(attack, velocidad)
+        self.nombre = 'Lanza'
+        self.descripcion = 'Arma puntiaguda'
         
