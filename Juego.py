@@ -7,33 +7,30 @@ class Juego:
     
     def atacar(self, jugador: Entidad, target: str, sala: Sala):
         for enemigo in sala.enemigos:
-            if enemigo.getVida() > 0:
-                if(enemigo.getVelocidad() > jugador.getVelocidad()):
-                    enemigo.atacar(jugador)
-                    
-                elif enemigo.getVelocidad() <= jugador.getVelocidad():
+            if enemigo.getVida() > 0:                   
+                if enemigo.getVelocidad() <= jugador.getVelocidad():
                     if target == enemigo.getNombre():
                         jugador.atacar(enemigo)
                         if enemigo.getVida() <= 0:
                             jugador.ganarExp(enemigo.getExp())
                             sala.eliminar_enemigo(enemigo)
+                if enemigo.getVida() > 0:
                     enemigo.atacar(jugador)
                     
                   
     def action(self, jugador: Entidad, sala: Sala):
         rondaCombate = 1
+        sala.sortEnemigos()
         while jugador.vidaActual > 0 and sala.enemigos:
             print('Inicio de la ronda de combate ' + str(rondaCombate))
-            print('Enemigos restantes:\n' + sala.__str__())
+            print('Enemigos restantes:\n\n' + sala.__str__())
             print('Tu personaje:\n' + jugador.__str__() + '\n')
             print('Seleccione la acción que desea realizar:')
             print(' Atacar')
             print(' Objeto')
             if jugador.mejora:
                 print(' Habilidad especial')
-            
             print('\n')
-                
             accion = input()
 
             #Acción que realiza al atacar
@@ -85,9 +82,11 @@ def main():
         #elegir si quieres realizar una accion antes o continuar(equipar objeto)
         #print('Antes de continuar a la siguiente sala, ¿desea realizar alguna acción?')
         #print(' 1:Equipar objeto \n 2:Continuar')
-        sala.generarEnemigos('Goblin', random.randint(1, 4)) 
-        if(jugador.getNivel() >= 3):
-            sala.generarEnemigos('Moblin', random.randint(1, 3))
+        sala.generarEnemigos('Goblin', random.randint(1, 2)) 
+        if(jugador.getNivel() >= 2):
+            sala.generarEnemigos('Goblin', random.randint(1, 2))
+        if(jugador.getNivel() >= 4):
+            sala.generarEnemigos('Moblin', random.randint(1, 2))
         if(jugador.getNivel() >= 6):
             sala.generarEnemigos('Ogro', random.randint(1, 2))
         time.sleep(2)

@@ -77,6 +77,9 @@ class Arma(Objeto):
     def getDescripcion(self):
         return self.descripcion
     
+    def usar(self, jugador):
+        jugador.equiparArma(self)
+    
 class PocionVida(Objeto):
     def __init__(self):
         super().__init__('Pocion Vida', 'Recupera 10 puntos de vida')

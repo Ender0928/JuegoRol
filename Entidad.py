@@ -58,7 +58,8 @@ class Humano(Personaje):
         
     def equiparArma(self, arma: Arma):
         self.arma = arma
-        self.danio += arma.getAtaque           
+        self.danioBase += arma.getAtaque()
+        self.velocidad_base += arma.getVelocidad()          
             
     def consultar_mochila(self):
         if self.mochila :

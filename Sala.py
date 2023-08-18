@@ -4,18 +4,20 @@ from Entidad import *
 
 class Sala:
         numero: int = 1
-        lista_objetos_recompensas = [Espada(random.randint(5-2, 5+2),random.randint(5-2, 5+2)), PocionVida(), PocionPE()] # 'Armadura', 'Lanza', 'Hacha']
         
         def __init__(self):
             self.numero = Sala.numero
             Sala.numero += 1
             self.enemigos = []
-            self.recompensa = random.choice(Sala.lista_objetos_recompensas)
+            #self.recompensa = random.choice([Espada(random.randint(5-2, 5+2),random.randint(5-2, 5+2)), PocionVida()])#, PocionPE()]) # 'Armadura', 'Lanza', 'Hacha'])
+            self.recompensa = Espada(10, 10)
             
         def agregar_enemigo(self, *personaje : Entidad):
             self.enemigos.extend(personaje)
+        
+        def sortEnemigos(self):
             self.enemigos.sort(key=lambda x: x.getVelocidad(), reverse=True)
-            
+               
         def eliminar_enemigo(self, personaje: Entidad):
             personaje.morir()
             self.enemigos.remove(personaje)
