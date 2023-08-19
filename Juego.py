@@ -67,6 +67,9 @@ class Juego:
     def obtenerRecompensa(self, jugador: Humano, sala: Sala):
         jugador.getMochila().agregarObjeto(sala.recompensa)       
     
+    def crearNuevaSala():
+        return Sala()
+
     
 def main():
     juego = Juego()
@@ -100,7 +103,7 @@ def main():
         if(jugador.getNivel() >= 5 and jugador.mejora == False):
             jugador.mejorar()
         
-        sala = Sala()
+        sala = juego.crearNuevaSala()
     
 if __name__ == '__main__':
     main()

@@ -1,4 +1,4 @@
-import Stats
+import Stats, random
 
 class Objeto:
     
@@ -8,6 +8,9 @@ class Objeto:
         
     def getNombre(self):
         return self.nombre
+    
+    def getDescripcion(self):
+        return self.descripcion
     
     def __str__(self):
         return self.nombre
@@ -52,7 +55,20 @@ class Mochila(Objeto):
         for i in self.contenido:
             acum += i.__str__() + '\n'
         print(acum)
-      
+
+#////////falta implementar/////////
+class Equipable(Objeto):
+        
+        def __init__(self, nombre: str, descripcion: str, requerimiento: Stats.Stats):
+            super().__init__(nombre, descripcion)
+            self.requerimiento = requerimiento
+            
+        def getRequerimiento(self):
+            return self.requerimiento
+        
+        def usar(self, jugador):
+            pass
+              
 class Arma(Objeto):
 
     def __init__(self, ataque: int, velocidad: int):
@@ -60,6 +76,7 @@ class Arma(Objeto):
         self.ataque = ataque
         #self.requerimiento = requerimiento
         self.velocidad = velocidad
+        self.durabilidad = random.randint(4, 8)
         
     def __str__(self):
         return self.nombre + " (Ataque: " + str(self.ataque) + " - Velocidad: " + str(self.velocidad) + ")"
@@ -73,12 +90,21 @@ class Arma(Objeto):
     def getRequerimiento(self):
         return self.requerimiento
     
-    def getDescripcion(self):
-        return self.descripcion
-    
     def usar(self, jugador):
         jugador.equiparArma(self)
+
+class Armadura(Objeto):
+    def __init__(self, nombre: str, descripcion: str, defensa: int):#, requerimiento: Stats.Stats):
+        super().__init__(nombre, descripcion)  
+        self.defensa = defensa
+        #self.requerimiento = requerimiento  
     
+    def getDefensa(self):
+        return self.defensa
+    
+    def usar(self, jugador):
+        jugador.equiparArmadura(self)
+               
 class PocionVida(Objeto):
     def __init__(self):
         super().__init__('Pocion Vida', 'Recupera 10 puntos de vida')
@@ -111,5 +137,4 @@ class Lanza(Arma):
     def __init__(self, attack: int, velocidad: int):
         super().__init__(attack, velocidad)
         self.nombre = 'Lanza'
-        self.descripcion = 'Arma puntiaguda'
-        
+        self.descripcion = 'Arma puntiaguda'    

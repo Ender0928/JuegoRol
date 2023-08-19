@@ -49,6 +49,7 @@ class Humano(Personaje):
         self.mochila.agregarObjeto(PocionVida())
         self.velocidad_base = 1
         self.danioBase = 8
+        self.defensa = 0
         self.PE = 0
         self.PEMax = 0
         self.exp = 0
@@ -60,7 +61,11 @@ class Humano(Personaje):
         self.arma = arma
         self.danioBase += arma.getAtaque()
         self.velocidad_base += arma.getVelocidad()          
-            
+    
+    def equiparArmadura(self, armadura: Armadura):
+        self.armadura = armadura
+        self.defensa += armadura.getDefensa()
+                
     def consultar_mochila(self):
         if self.mochila :
             print('Mochila: ')
