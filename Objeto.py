@@ -62,13 +62,14 @@ class Equipable(Objeto):
         def __init__(self, nombre: str, descripcion: str, requerimiento: Stats.Stats):
             super().__init__(nombre, descripcion)
             self.requerimiento = requerimiento
+            self.durabilidad = random.randint(4, 8)
             
         def getRequerimiento(self):
             return self.requerimiento
         
         def usar(self, jugador):
             pass
-              
+            
 class Arma(Objeto):
 
     def __init__(self, ataque: int, velocidad: int):
@@ -76,7 +77,6 @@ class Arma(Objeto):
         self.ataque = ataque
         #self.requerimiento = requerimiento
         self.velocidad = velocidad
-        self.durabilidad = random.randint(4, 8)
         
     def __str__(self):
         return self.nombre + " (Ataque: " + str(self.ataque) + " - Velocidad: " + str(self.velocidad) + ")"

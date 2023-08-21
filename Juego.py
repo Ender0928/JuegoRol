@@ -1,4 +1,4 @@
-import Sala, Entidad, time
+import Sala, Entidad, time, Dado
 from Entidad import *
 from Sala import *
 
@@ -66,11 +66,14 @@ class Juego:
    
     def obtenerRecompensa(self, jugador: Humano, sala: Sala):
         jugador.getMochila().agregarObjeto(sala.recompensa)       
-    
-    def crearNuevaSala():
-        return Sala()
 
-    
+    def tirarDados(caras: int, numeroDados: int):
+        acumulador = 0
+        for i in range(numeroDados):
+            dado = Dado(caras)
+            acumualdor += dado.rolar()
+        return acumulador
+        
 def main():
     juego = Juego()
     print('Bienvenido a la mazmorra')
@@ -103,7 +106,7 @@ def main():
         if(jugador.getNivel() >= 5 and jugador.mejora == False):
             jugador.mejorar()
         
-        sala = juego.crearNuevaSala()
+        sala = Sala()
     
 if __name__ == '__main__':
     main()

@@ -12,6 +12,7 @@ class Personaje:
         self.stats = Stats.Stats()
         self.velocidad_base = 1
         self.exp = 0
+        self.defensa = 0
         
     def getVelocidad(self):
         return self.velocidad_base
@@ -26,7 +27,12 @@ class Personaje:
         objetivo.recibirDanio(random.randint(self.danioBase-2, self.danioBase+2))
     
     def recibirDanio(self,ataque: int):
-        self.vidaActual -= ataque
+        dañoTotal = ataque - self.defensa
+        if dañoTotal < 0:
+            dañoTotal = 1
+            
+        self.vidaActual -= dañoTotal
+        
         if self.vidaActual <= 0:
             self.vidaActual = 0
      

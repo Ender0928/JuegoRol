@@ -4,12 +4,14 @@ from Entidad import *
 
 class Sala:
         numero: int = 1
-        
+        flag: bool = False
         def __init__(self):
             self.numero = Sala.numero
             Sala.numero += 1
             self.enemigos = []
             self.recompensa = random.choice([Espada(random.randint(5-2, 5+2),random.randint(5-2, 5+2)), PocionVida()])#, PocionPE()]) # 'Armadura', 'Lanza', 'Hacha'])
+            if Sala.flag:
+                self.recompensa.append(PocionPE()) 
             
         def agregar_enemigo(self, *personaje : Entidad):
             self.enemigos.extend(personaje)
