@@ -9,7 +9,7 @@ class Personaje:
         self.nombre = nombre
         self.sala = sala
         self.danioBase = 2
-        self.stats = Stats.Stats()
+        self.stats = Stats()
         self.velocidad_base = 1
         self.exp = 0
         self.defensa = 0
@@ -109,10 +109,11 @@ class Humano(Personaje):
             self.vidaActual = self.vidaMax
             self.PEMax += 5
             self.PE = self.PEMax
-            #self.stats.agregarPuntos()
+            self.stats.agregarPuntos()
+            #hacer que el usuario elija que stat subir
             print('Has subido de nivel')
-            #self.mejora = True
-            #self.mejorar()   
+            if(self.nivel == 5 and self.mejora == False):
+                self.mejorar()   
     
     def getNivel(self):
         return self.nivel

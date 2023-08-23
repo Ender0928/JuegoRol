@@ -102,9 +102,6 @@ def main():
         juego.action(jugador, sala)
         print('Has superado la sala ' + str(sala.getNumero()))
         juego.obtenerRecompensa(jugador, sala)
-    
-        if(jugador.getNivel() >= 5 and jugador.mejora == False):
-            jugador.mejorar()
         
         sala = Sala()
     
