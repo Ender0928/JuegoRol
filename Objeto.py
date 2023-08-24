@@ -1,4 +1,5 @@
 import Stats, random
+from Stats import *
 
 class Objeto:
     
@@ -56,26 +57,36 @@ class Mochila(Objeto):
             acum += i.__str__() + '\n'
         print(acum)
 
-#////////falta implementar/////////
 class Equipable(Objeto):
         
-        def __init__(self, nombre: str, descripcion: str, requerimiento: Stats.Stats):
+        def __init__(self, nombre: str, descripcion: str):
             super().__init__(nombre, descripcion)
-            self.requerimiento = requerimiento
+            self.requerimiento = Stats()
+            self.requerimiento.requerimientoObjeto()
             self.durabilidad = random.randint(4, 8)
             
         def getRequerimiento(self):
             return self.requerimiento
         
+        def getDurabilidad(self):
+            return self.durabilidad
+        
+        def objetoUsado(self):
+            self.durabilidad -= 1
+            if self.durabilidad == 0:
+                print('El objeto se ha roto')
+                return True
+            else:
+                return False
+            
         def usar(self, jugador):
             pass
             
-class Arma(Objeto):
+class Arma(Equipable):
 
     def __init__(self, ataque: int, velocidad: int):
         super().__init__('Arma', 'Objeto para atacar')
         self.ataque = ataque
-        #self.requerimiento = requerimiento
         self.velocidad = velocidad
         
     def __str__(self):
@@ -87,17 +98,13 @@ class Arma(Objeto):
     def getVelocidad(self):
         return self.velocidad 
     
-    def getRequerimiento(self):
-        return self.requerimiento
-    
     def usar(self, jugador):
         jugador.equiparArma(self)
 
-class Armadura(Objeto):
+class Armadura(Equipable):
     def __init__(self, nombre: str, descripcion: str, defensa: int):#, requerimiento: Stats.Stats):
         super().__init__(nombre, descripcion)  
         self.defensa = defensa
-        #self.requerimiento = requerimiento  
     
     def getDefensa(self):
         return self.defensa

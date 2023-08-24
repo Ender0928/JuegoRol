@@ -47,7 +47,6 @@ class Personaje:
 
 class Humano(Personaje):
     
-    arma: Arma
     
     def __init__(self, vida: int, nombre: str, sala: Sala):
         super().__init__(vida, nombre, sala)
@@ -61,6 +60,8 @@ class Humano(Personaje):
         self.exp = 0
         self.subirNivel = 100
         self.nivel = 0
+        self.arma = None
+        self.armadura = None
         self.mejora = False
         
     def equiparArma(self, arma: Arma):
@@ -130,7 +131,30 @@ class Humano(Personaje):
         else:
             print('No ha elegido ninguna clase válida')
             return self.elegir_clase()
+    
+    def atacar(self, objetivo):
+        objetivo.recibirDanio(random.randint(self.danioBase-2, self.danioBase+2))
+        if self.arma:
+            if self.arma.objetoUsado():
+                self.danioBase -= self.arma.getAtaque()
+                self.velocidad_base -= self.arma.getVelocidad()
+                self.arma = None
+                    
+    def recibirDanio(self,ataque: int):
+        dañoTotal = ataque - self.defensa
+        if dañoTotal < 0:
+            dañoTotal = 1
+            
+        self.vidaActual -= dañoTotal
         
+        if self.vidaActual <= 0:
+            self.vidaActual = 0
+            
+        if self.armadura:
+            if self.armadura.objetoUsado():
+                self.defensa -= self.armadura.getDefensa()
+                self.armadura = None
+                
 class Asesino(Humano):
     
     def __init__(self, vida, nombre):

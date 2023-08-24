@@ -38,7 +38,12 @@ class Stats:
         self.Dexterity += random.randint(0,2)
         self.Constitution += random.randint(0,2)
         self.Wisdom += random.randint(0,2)
-                
+    
+    def requerimientoObjeto(self):
+        self.Strength = random.randint(9,14)  
+        self.Dexterity = random.randint(9,14)
+        self.Wisdom = random.randint(9,14)
+                  
     def __str__(self):
         #return "STR: " + str(self.Strength) + "\nDEX: " + str(self.Dexterity) + "\nCON: " + str(self.Constitution) + "\nINT: " + str(self.Intelligence) + "\nWIS: " + str(self.Wisdom) + "\nCHA: " + str(self.Charisma)
         return "STR: " + str(self.Strength) + "\nDEX: " + str(self.Dexterity) + "\nCON: " + str(self.Constitution) + "\nWIS: " + str(self.Wisdom)
