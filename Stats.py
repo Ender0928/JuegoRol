@@ -1,12 +1,13 @@
-import random
+import random, Dado
 
 class Stats:
     def __init__(self):
-        self.Strength = random.randint(8,12)
-        self.Dexterity = random.randint(8,12)
-        self.Constitution = random.randint(8,12)
+        dado = Dado(6)
+        self.Strength = dado.caracteristica()
+        self.Dexterity = dado.caracteristica()
+        self.Constitution = dado.caracteristica()
         #self.Intelligence = 10
-        self.Wisdom = random.randint(8,12)
+        self.Wisdom = dado.caracteristica()
         #self.Charisma = 10
     
     def getStrength(self):
