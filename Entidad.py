@@ -45,8 +45,7 @@ class Personaje:
 
 #___________________________________________Protagonista__________________________________________________
 
-class Humano(Personaje):
-    
+class Humano(Personaje):    
     
     def __init__(self, vida: int, nombre: str, sala: Sala):
         super().__init__(vida, nombre, sala)

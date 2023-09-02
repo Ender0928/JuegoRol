@@ -1,4 +1,6 @@
 import random, Dado
+from Dado import *
+
 
 class Stats:
     def __init__(self):
@@ -6,9 +8,9 @@ class Stats:
         self.Strength = dado.caracteristica()
         self.Dexterity = dado.caracteristica()
         self.Constitution = dado.caracteristica()
-        #self.Intelligence = 10
+        #self.Intelligence = dado.caracteristica()
         self.Wisdom = dado.caracteristica()
-        #self.Charisma = 10
+        #self.Charisma = dado.caracteristica()
     
     def getStrength(self):
         return self.Strength
@@ -44,7 +46,10 @@ class Stats:
         self.Strength = random.randint(9,14)  
         self.Dexterity = random.randint(9,14)
         self.Wisdom = random.randint(9,14)
-                  
+    
+    def compararStats(self, stats:Stats):
+        self.Strength 
+                     
     def __str__(self):
         #return "STR: " + str(self.Strength) + "\nDEX: " + str(self.Dexterity) + "\nCON: " + str(self.Constitution) + "\nINT: " + str(self.Intelligence) + "\nWIS: " + str(self.Wisdom) + "\nCHA: " + str(self.Charisma)
         return "STR: " + str(self.Strength) + "\nDEX: " + str(self.Dexterity) + "\nCON: " + str(self.Constitution) + "\nWIS: " + str(self.Wisdom)

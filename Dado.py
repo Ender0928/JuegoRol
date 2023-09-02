@@ -1,7 +1,7 @@
 import random
 
 class Dado:
-    def __init__(self, lados):
+    def __init__(self, lados: int):
         self.lados = lados
 
     def rolar(self) -> int:
