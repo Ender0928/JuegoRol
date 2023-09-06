@@ -1,4 +1,4 @@
-import random, Dado
+import random, Dado, Stats
 from Dado import *
 
 
@@ -47,9 +47,12 @@ class Stats:
         self.Dexterity = random.randint(9,14)
         self.Wisdom = random.randint(9,14)
     
-    def compararStats(self, stats:Stats):
-        self.Strength 
-                     
+    def compararStats(self, stats: Stats) -> bool:
+        if(self.Strength < stats.getStrength() or self.Dexterity < stats.getDexterity() 
+           or self.Constitution < stats.getConstitution() or self.Wisdom < stats.getWisdom()):
+            return False
+        return True
+                 
     def __str__(self):
         #return "STR: " + str(self.Strength) + "\nDEX: " + str(self.Dexterity) + "\nCON: " + str(self.Constitution) + "\nINT: " + str(self.Intelligence) + "\nWIS: " + str(self.Wisdom) + "\nCHA: " + str(self.Charisma)
         return "STR: " + str(self.Strength) + "\nDEX: " + str(self.Dexterity) + "\nCON: " + str(self.Constitution) + "\nWIS: " + str(self.Wisdom)

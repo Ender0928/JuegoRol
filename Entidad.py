@@ -24,7 +24,7 @@ class Personaje:
         return self.vidaActual
     
     def atacar(self, objetivo):
-        objetivo.recibirDanio(random.randint(self.danioBase-2, self.danioBase+2))
+        objetivo.recibirDanio(random.randint(self.danioBase-2, self.danioBase+2) * (self.stats.getStrength()/10))
     
     def recibirDanio(self,ataque: int):
         dañoTotal = ataque - self.defensa
@@ -132,15 +132,23 @@ class Humano(Personaje):
             return self.elegir_clase()
     
     def atacar(self, objetivo):
-        objetivo.recibirDanio(random.randint(self.danioBase-2, self.danioBase+2))
-        if self.arma:
-            if self.arma.objetoUsado():
-                self.danioBase -= self.arma.getAtaque()
-                self.velocidad_base -= self.arma.getVelocidad()
-                self.arma = None
+        ataque = random.randint(0, self.stats.getDexterity())
+        if ataque == 0:
+            print(self.nombre + 'ha fallado el ataque')
+        else: 
+            objetivo.recibirDanio(random.randint(self.danioBase-2, self.danioBase+2) * int((self.stats.getStrength()/10)))
+            if self.arma:
+                if self.arma.objetoUsado():
+                    self.danioBase -= self.arma.getAtaque()
+                    self.velocidad_base -= self.arma.getVelocidad()
+                    self.arma = None
                     
     def recibirDanio(self,ataque: int):
-        dañoTotal = ataque - self.defensa
+        dañoTotal = (int(ataque*(10/self.stats.getConstitution())) - self.defensa)
+        esquivar = random.randint(0, self.stats.getDexterity())
+        if esquivar == 0:
+            dañoTotal = 0
+            print(self.nombre + 'ha esquivado el ataque')
         if dañoTotal < 0:
             dañoTotal = 1
             
