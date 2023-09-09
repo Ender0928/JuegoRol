@@ -9,7 +9,7 @@ class Sala:
             self.numero = Sala.numero
             Sala.numero += 1
             self.enemigos = []
-            self.recompensa = random.choice([Espada(random.randint(5-2, 5+2),random.randint(5-2, 5+2)), PocionVida()])#, PocionPE()]) # 'Armadura', 'Lanza', 'Hacha'])
+            self.recompensa = random.choice([Espada(random.randint(3, 7),random.randint(3, 7)), PocionVida(), Armadura(random.randint(3, 7))])#, PocionPE()]) # 'Armadura', 'Lanza', 'Hacha'])
             if Sala.flag:
                 self.recompensa.append(PocionPE()) 
             

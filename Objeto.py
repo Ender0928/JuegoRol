@@ -102,8 +102,8 @@ class Arma(Equipable):
         jugador.equiparArma(self)
 
 class Armadura(Equipable):
-    def __init__(self, nombre: str, descripcion: str, defensa: int):#, requerimiento: Stats.Stats):
-        super().__init__(nombre, descripcion)  
+    def __init__(self, defensa: int):#, requerimiento: Stats.Stats):
+        super().__init__('Armadura', 'Protege del daño enemigo')  
         self.defensa = defensa
     
     def getDefensa(self):
@@ -111,6 +111,9 @@ class Armadura(Equipable):
     
     def usar(self, jugador):
         jugador.equiparArmadura(self)
+        
+    def __str__(self):
+        return self.nombre + ' Defensa: ' + self.defensa
                
 class PocionVida(Objeto):
     def __init__(self):
@@ -130,18 +133,26 @@ class Espada(Arma):
   
     
     def __init__(self, attack: int, velocidad: int):
-        super().__init__(attack, velocidad)#'Espada', 'Arma de filo', 5, Stats.Stats(0, 0, 0, 0, 0, 0, 0), 0)   
+        attack += random.randint(2,4)
+        velocidad += random.randint(1,3)
+        super().__init__(attack, velocidad)# Stats.Stats(0, 0, 0, 0, 0, 0, 0), 0)   
         self.nombre = 'Espada'
         self.descripcion = 'Arma de filo'
         
 class Hacha(Arma):
     def __init__(self, attack: int, velocidad: int):
+        attack += random.randint(4,6)
+        velocidad -= random.randint(1,3)
+        if velocidad < 0:
+            velocidad = 0
         super().__init__(attack, velocidad)
         self.nombre = 'Hacha'
         self.descripcion = 'Arma contundente'
         
 class Lanza(Arma):
     def __init__(self, attack: int, velocidad: int):
+        attack += random.randint(1,3)
+        velocidad += random.randint(3,5)
         super().__init__(attack, velocidad)
         self.nombre = 'Lanza'
         self.descripcion = 'Arma puntiaguda'    
