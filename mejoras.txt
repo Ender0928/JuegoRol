@@ -1,0 +1,8 @@
+Añadir ataques a distancia => Arco
+Intentos de intimidación etc => Charisma
+Tomar como referencia life in adventure pero con combate con más enemigos(podría poner como máximo 3 enemigos pero más poderosso)
+Añadir nuevos tipos de enemigos con sus debilidades y resistencias 
+Añadir sangrado a las espadas, aturdimineto a las hachas y ??? a las lanzas 
+Añadir escudo que solo se pueda llevar con armas de una mano(espadas)
+Hacer algo con wisdom(mirar en internet como funciona)
+Añadir tienda y dinero para comprar cosas

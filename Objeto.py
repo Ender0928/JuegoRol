@@ -88,15 +88,19 @@ class Arma(Equipable):
         super().__init__('Arma', 'Objeto para atacar')
         self.ataque = ataque
         self.velocidad = velocidad
+        self.alcance = 1
         
     def __str__(self):
-        return self.nombre + " (Ataque: " + str(self.ataque) + " - Velocidad: " + str(self.velocidad) + ")"
+        return self.nombre + " (Ataque: " + str(self.ataque) + " - Velocidad: " + str(self.velocidad) +  "Alcance: " + str(self.alcance) + ")"
     
     def getAtaque(self):
         return self.ataque
     
     def getVelocidad(self):
         return self.velocidad 
+    
+    def getAlcance(self):
+        return self.alcance
     
     def usar(self, jugador):
         jugador.equiparArma(self)
@@ -113,7 +117,7 @@ class Armadura(Equipable):
         jugador.equiparArmadura(self)
         
     def __str__(self):
-        return self.nombre + ' Defensa: ' + self.defensa
+        return self.nombre + ' (Defensa: ' + str(self.defensa) + ')'
                
 class PocionVida(Objeto):
     def __init__(self):
@@ -130,12 +134,11 @@ class PocionPE(Objeto):
         jugador.recuperarPE(30)
 
 class Espada(Arma):
-  
-    
+     
     def __init__(self, attack: int, velocidad: int):
         attack += random.randint(2,4)
         velocidad += random.randint(1,3)
-        super().__init__(attack, velocidad)# Stats.Stats(0, 0, 0, 0, 0, 0, 0), 0)   
+        super().__init__(attack, velocidad) 
         self.nombre = 'Espada'
         self.descripcion = 'Arma de filo'
         
@@ -155,4 +158,13 @@ class Lanza(Arma):
         velocidad += random.randint(3,5)
         super().__init__(attack, velocidad)
         self.nombre = 'Lanza'
-        self.descripcion = 'Arma puntiaguda'    
+        self.descripcion = 'Arma puntiaguda'  
+        
+class Arco(Arma):
+    def __init__(self, attack: int, velocidad: int):
+        attack += random.randint(2,4)
+        velocidad += random.randint(1,3)
+        super().__init__(attack, velocidad)
+        self.nombre = 'Arco'
+        self.alcance = 3
+        self.descripcion = 'Arma a distancia'  

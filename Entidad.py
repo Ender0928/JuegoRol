@@ -189,6 +189,12 @@ class Guerrero(Humano):
         print('Realizas un placaje al enemigo')
         self.PE -= 25
         return self.arma.getAtaque() * 1.5
+    
+    def intimidar(self, enemigo):
+        print('Intimidas al enemigo y reduces su ataque')
+        self.PE -= 25
+        enemigo.ataque -= 3
+        
         
 class Mago(Humano):
     
